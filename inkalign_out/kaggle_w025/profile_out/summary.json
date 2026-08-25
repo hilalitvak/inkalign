@@ -1,0 +1,19 @@
+{
+  "source": "roi.zarr",
+  "shape_zyx": [
+    28,
+    768,
+    768
+  ],
+  "tile": 128,
+  "stride": 1,
+  "tiles_sampled": 36,
+  "tiles_valid": 34,
+  "median_offset_layers": -2.158409649384076,
+  "offset_iqr_layers": [
+    -4.30547891256059,
+    -0.9347095548475308
+  ],
+  "recommended_layer_start": 0,
+  "recommended_layer_end": 24
+}

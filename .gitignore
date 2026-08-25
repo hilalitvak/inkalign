@@ -4,5 +4,8 @@ __pycache__/
 build/
 dist/
 .venv/
-inkalign_out/
+inkalign_out/*
+!inkalign_out/kaggle_w025/
+inkalign_out/kaggle_w025/**/*.tif
 .pytest_cache/
+

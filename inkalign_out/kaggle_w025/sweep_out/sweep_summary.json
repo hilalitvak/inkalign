@@ -1,0 +1,164 @@
+{
+  "runs": [
+    {
+      "layer_start": 1,
+      "layer_end": 15,
+      "direction": "forward",
+      "offset": -6.0,
+      "output": "/kaggle/working/sweep_out/pred_off-06_forward.tif",
+      "line_score": 0.05673617768651824,
+      "ink_fraction": 0.057123819986979164,
+      "error": null
+    },
+    {
+      "layer_start": 1,
+      "layer_end": 15,
+      "direction": "reverse",
+      "offset": -6.0,
+      "output": "/kaggle/working/sweep_out/pred_off-06_reverse.tif",
+      "line_score": 0.05303916584602975,
+      "ink_fraction": 0.09222581651475695,
+      "error": null
+    },
+    {
+      "layer_start": 3,
+      "layer_end": 17,
+      "direction": "forward",
+      "offset": -4.0,
+      "output": "/kaggle/working/sweep_out/pred_off-04_forward.tif",
+      "line_score": 0.2792518054562464,
+      "ink_fraction": 0.0679812961154514,
+      "error": null
+    },
+    {
+      "layer_start": 3,
+      "layer_end": 17,
+      "direction": "reverse",
+      "offset": -4.0,
+      "output": "/kaggle/working/sweep_out/pred_off-04_reverse.tif",
+      "line_score": 0.1868719377915679,
+      "ink_fraction": 0.0632748074001736,
+      "error": null
+    },
+    {
+      "layer_start": 5,
+      "layer_end": 19,
+      "direction": "forward",
+      "offset": -2.0,
+      "output": "/kaggle/working/sweep_out/pred_off-02_forward.tif",
+      "line_score": 0.09770988554115119,
+      "ink_fraction": 0.042383829752604164,
+      "error": null
+    },
+    {
+      "layer_start": 5,
+      "layer_end": 19,
+      "direction": "reverse",
+      "offset": -2.0,
+      "output": "/kaggle/working/sweep_out/pred_off-02_reverse.tif",
+      "line_score": 0.1650580362640096,
+      "ink_fraction": 0.07313707139756945,
+      "error": null
+    },
+    {
+      "layer_start": 7,
+      "layer_end": 21,
+      "direction": "forward",
+      "offset": 0.0,
+      "output": "/kaggle/working/sweep_out/pred_off+00_forward.tif",
+      "line_score": 0.023408676422510797,
+      "ink_fraction": 0.08251105414496528,
+      "error": null
+    },
+    {
+      "layer_start": 7,
+      "layer_end": 21,
+      "direction": "reverse",
+      "offset": 0.0,
+      "output": "/kaggle/working/sweep_out/pred_off+00_reverse.tif",
+      "line_score": 0.15974600787032517,
+      "ink_fraction": 0.1140289306640625,
+      "error": null
+    },
+    {
+      "layer_start": 9,
+      "layer_end": 23,
+      "direction": "forward",
+      "offset": 2.0,
+      "output": "/kaggle/working/sweep_out/pred_off+02_forward.tif",
+      "line_score": 0.17837673684932864,
+      "ink_fraction": 0.056038750542534724,
+      "error": null
+    },
+    {
+      "layer_start": 9,
+      "layer_end": 23,
+      "direction": "reverse",
+      "offset": 2.0,
+      "output": "/kaggle/working/sweep_out/pred_off+02_reverse.tif",
+      "line_score": 0.13204218676130952,
+      "ink_fraction": 0.10824076334635417,
+      "error": null
+    },
+    {
+      "layer_start": 11,
+      "layer_end": 25,
+      "direction": "forward",
+      "offset": 4.0,
+      "output": "/kaggle/working/sweep_out/pred_off+04_forward.tif",
+      "line_score": 0.22768014855911764,
+      "ink_fraction": 0.08125813802083333,
+      "error": null
+    },
+    {
+      "layer_start": 11,
+      "layer_end": 25,
+      "direction": "reverse",
+      "offset": 4.0,
+      "output": "/kaggle/working/sweep_out/pred_off+04_reverse.tif",
+      "line_score": 0.08485159225976238,
+      "ink_fraction": 0.1376427544487847,
+      "error": null
+    },
+    {
+      "layer_start": 13,
+      "layer_end": 27,
+      "direction": "forward",
+      "offset": 6.0,
+      "output": "/kaggle/working/sweep_out/pred_off+06_forward.tif",
+      "line_score": 0.07263159639117613,
+      "ink_fraction": 0.1210174560546875,
+      "error": null
+    },
+    {
+      "layer_start": 13,
+      "layer_end": 27,
+      "direction": "reverse",
+      "offset": 6.0,
+      "output": "/kaggle/working/sweep_out/pred_off+06_reverse.tif",
+      "line_score": 0.18974031389061083,
+      "ink_fraction": 0.10309516059027778,
+      "error": null
+    }
+  ],
+  "best": {
+    "layer_start": 3,
+    "layer_end": 17,
+    "direction": "forward",
+    "offset": -4.0,
+    "output": "/kaggle/working/sweep_out/pred_off-04_forward.tif",
+    "line_score": 0.2792518054562464,
+    "ink_fraction": 0.0679812961154514,
+    "error": null
+  },
+  "direction": {
+    "direction": "forward",
+    "scores": {
+      "forward": 0.2792518054562464,
+      "reverse": 0.18974031389061083
+    },
+    "margin": 1.4717578975717347,
+    "confident": false
+  },
+  "recommended_flags": "--layer-start 3 --layer-end 17 --direction forward"
+}

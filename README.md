@@ -71,13 +71,21 @@ inkalign extract-roi "s3://…/surface-volumes/9.362um-….zarr" --out roi.zarr
 inkalign sweep roi.zarr checkpoints/ink_9um/hybrid_3d2d-seed42/step-075000.pth
 ```
 
+Real output from the w025 ROI above, official `ink_9um` cross-scroll
+checkpoint, free Kaggle GPU (P100, ~6 min end to end):
+
 ```
 stack depth 28, window 14: 14 inference runs planned
 ...
-best window: offset +2.0, direction forward, line_score 0.121
-orientation: forward (confident, margin x6.3)
-recommended flags: --layer-start 9 --layer-end 23 --direction forward
+best window: offset -4.0, direction forward, line_score 0.279
+recommended flags: --layer-start 3 --layer-end 17 --direction forward
 ```
+
+The model responds best 4 layers below stack center — the same side the
+CPU depth profile pointed to (median CT ridge offset −2.16) — and prefers
+`forward` orientation at every strongly-scored offset (margin ×1.47, just
+under the ×1.5 confidence bar; `sweep_summary.json` reports both).
+Full artifacts from this run are in `inkalign_out/kaggle_w025/`.
 
 The inference command is a template (`--infer-template`), so any runner with
 `--layer-start/--layer-end/--direction` flags can be swept. `--dry-run` prints
@@ -90,8 +98,12 @@ Under active development (August 2026). Roadmap:
 - [x] depth-profile core: per-tile ridge offset, heatmap, recommended window
 - [x] model-in-the-loop sweep over `(layer_start, direction)` with model-free
       text-likeness scoring, resolving the recto/verso ambiguity that
-      `--direction both` brute-forces (validated against a stub runner; real
-      checkpoint run pending)
+      `--direction both` brute-forces (validated 25 Aug 2026 on real scroll
+      data with the official `ink_9um` checkpoint — see above)
+- [x] free-GPU recipes: `notebooks/colab_sweep.ipynb` (Colab) and
+      `notebooks/kaggle_sweep.py` (Kaggle script kernel; the validated run)
+      — both pin the undeclared deps `infer.py` needs and run on any
+      assigned GPU, including pre-Triton P100s
 - [x] self-contained HTML report bundling profile + sweep evidence (`inkalign report`)
 - [ ] label snapping: per-vertex offsets along mesh normals for tifxyz meshes
 

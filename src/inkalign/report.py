@@ -61,6 +61,26 @@ def save_profile_curve(result: ProfileResult, path: Path) -> None:
     plt.close(fig)
 
 
+def save_sweep_curve(runs, path: Path) -> None:
+    """Score-vs-offset curve, one line per direction."""
+    fig, ax = plt.subplots(figsize=(8, 4.5))
+    for direction in sorted({r.direction for r in runs}):
+        pts = sorted(
+            [(r.offset, r.line_score) for r in runs
+             if r.direction == direction and r.line_score is not None]
+        )
+        if pts:
+            ax.plot(*zip(*pts), marker="o", label=direction)
+    ax.set_xlabel("depth-window offset from stack center (layers)")
+    ax.set_ylabel("text-likeness (line score)")
+    ax.set_title("Ink-model response vs depth window and orientation")
+    ax.axvline(0, ls="--", c="gray", lw=0.8)
+    ax.legend(title="direction")
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+
+
 def summary_dict(result: ProfileResult, source: str) -> dict:
     offs = result.offsets
     window = result.recommended_window()

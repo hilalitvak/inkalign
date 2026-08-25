@@ -56,14 +56,42 @@ Options:
 | `--max-tiles N` | sampling budget; stride is chosen automatically (default 200) |
 | `--outdir DIR` | where to write the heatmap, curve, and summary |
 
+### Model-in-the-loop sweep
+
+The depth profile answers "is my surface centered?" from the CT signal alone.
+The sweep answers the sharper question — *which window does the ink model
+actually respond to, and which way is the surface facing?* — by running real
+inference over a grid of depth windows and both orientations and scoring each
+prediction for text-likeness (FFT line-pitch structure, no extra model needed).
+
+Extract a small ROI first so the GPU only ever sees a few hundred pixels:
+
+```bash
+inkalign extract-roi "s3://…/surface-volumes/9.362um-….zarr" --out roi.zarr
+inkalign sweep roi.zarr checkpoints/ink_9um/hybrid_3d2d-seed42/step-075000.pth
+```
+
+```
+stack depth 28, window 14: 14 inference runs planned
+...
+best window: offset +2.0, direction forward, line_score 0.121
+orientation: forward (confident, margin x6.3)
+recommended flags: --layer-start 9 --layer-end 23 --direction forward
+```
+
+The inference command is a template (`--infer-template`), so any runner with
+`--layer-start/--layer-end/--direction` flags can be swept. `--dry-run` prints
+the planned runs without touching a GPU.
+
 ## Status
 
 Under active development (August 2026). Roadmap:
 
 - [x] depth-profile core: per-tile ridge offset, heatmap, recommended window
-- [ ] model-in-the-loop sweep: run `vesuvius.ink_detection.inference.infer`
-      over `(layer_start, direction)` on a small ROI and score text-likeness,
-      resolving the recto/verso ambiguity that `--direction both` brute-forces
+- [x] model-in-the-loop sweep over `(layer_start, direction)` with model-free
+      text-likeness scoring, resolving the recto/verso ambiguity that
+      `--direction both` brute-forces (validated against a stub runner; real
+      checkpoint run pending)
 - [ ] self-contained HTML report (score-vs-offset curve, filmstrip)
 - [ ] label snapping: per-vertex offsets along mesh normals for tifxyz meshes
 

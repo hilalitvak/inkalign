@@ -102,6 +102,6 @@ def text_likeness(img: np.ndarray, um_per_px: float) -> TextScore:
         band = (freqs >= 1.0 / pitch_band[1]) & (freqs <= 1.0 / pitch_band[0])
         chance = band.sum() / max(len(freqs) - 1, 1)
         best = float(np.percentile(ratios, 90))  # text often occupies part of a segment
-        line_score = max(0.0, (best - chance) / (1 - chance))
+        line_score = float(max(0.0, (best - chance) / (1 - chance)))
 
     return TextScore(line_score=line_score, ink_fraction=ink_fraction, windows_scored=len(ratios))

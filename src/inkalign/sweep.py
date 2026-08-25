@@ -110,6 +110,7 @@ def execute_sweep(
             pred = tifffile.imread(run.output)
         except Exception as exc:
             run.error = f"could not read output: {exc}"
+            log(f"  FAILED: {run.error}")
             continue
         score = text_likeness(np.asarray(pred), um_per_px)
         run.line_score = score.line_score

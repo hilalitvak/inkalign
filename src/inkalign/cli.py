@@ -97,6 +97,18 @@ def cmd_sweep(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_report(args: argparse.Namespace) -> int:
+    from .html_report import build_report
+
+    out = build_report(
+        profile_dir=Path(args.profile_dir) if args.profile_dir else None,
+        sweep_dir=Path(args.sweep_dir) if args.sweep_dir else None,
+        out=Path(args.out),
+    )
+    print(f"report written to {out}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="inkalign",
@@ -147,6 +159,15 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--outdir", default="inkalign_sweep", help="output directory")
     p.add_argument("--dry-run", action="store_true", help="print planned runs and exit")
     p.set_defaults(func=cmd_sweep)
+
+    p = sub.add_parser(
+        "report",
+        help="bundle profile/sweep outputs into a single self-contained report.html",
+    )
+    p.add_argument("--profile-dir", help="directory written by `inkalign profile`")
+    p.add_argument("--sweep-dir", help="directory written by `inkalign sweep`")
+    p.add_argument("--out", default="report.html", help="output HTML path")
+    p.set_defaults(func=cmd_report)
 
     args = parser.parse_args(argv)
     return args.func(args)

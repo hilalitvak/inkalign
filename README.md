@@ -92,7 +92,7 @@ Under active development (August 2026). Roadmap:
       text-likeness scoring, resolving the recto/verso ambiguity that
       `--direction both` brute-forces (validated against a stub runner; real
       checkpoint run pending)
-- [ ] self-contained HTML report (score-vs-offset curve, filmstrip)
+- [x] self-contained HTML report bundling profile + sweep evidence (`inkalign report`)
 - [ ] label snapping: per-vertex offsets along mesh normals for tifxyz meshes
 
 ## License
